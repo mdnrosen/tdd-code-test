@@ -1,188 +1,126 @@
-# TDD Code Test: UK Driving License Number Generator
+# Candidate Instructions for TDD Code Test
 
-A TypeScript application for generating UK driving license numbers from personal details. This repository is designed for Test Driven Development (TDD) code tests where candidates write tests first, then implement the functionality.
+## Welcome to the UK Driving License Number Generator Code Test
 
-## Overview
+This repository contains a test suite for a UK driving license number generator. Your task is to implement the functionality following **strict Test Driven Development (TDD)** principles.
 
-The UK driving license number is a 16-character code algorithmically generated from:
-- Surname (first 5 characters)
-- Date of birth (year, month, day)
-- Gender
-- First and middle initials
+## IMPORTANT: Disable GitHub Copilot and AI Assistants!
 
-## UK Driving License Format
+Before you begin, **please disable GitHub Copilot and any other AI coding assistants**. This exercise is about practicing TDD fundamentals and problem-solving skills.
 
-The 16-character license number is structured as follows:
+To disable Copilot in VS Code:
 
-| Position | Description | Example |
-|----------|-------------|---------|
-| 1-5 | First 5 letters of surname (padded with 9s if shorter) | SMITH |
-| 6 | Decade digit of birth year | 9 (for 1990) |
-| 7-8 | Month of birth (add 50 for females) | 05 (male), 55 (female) |
-| 9-10 | Day of birth | 15 |
-| 11 | Last digit of birth year | 0 (for 1990) |
-| 12-13 | First and middle initials (9 if no middle name) | J9 |
-| 14 | Computer check digit | 9 |
-| 15-16 | Computer check digits | AA |
+- Click the Copilot icon in the status bar (bottom right)
+- Select "Disable Completions"
 
-### Example
+## IMPORTANT: Have fun.
 
-**John Smith, born May 15, 1990 (Male)**
-- Result: `SMITH905159J99AA`
+It's Christmas. Anyone not having fun will be punished accordingly.
 
-**Jane Brown, born February 4, 1981 (Female, no middle name)**
-- Result: `BROWN852041J99AA`
-- Note: Month is 52 (February + 50 for female)
+## What is TDD?
 
-## Installation
-
-```bash
-npm install
-```
-
-## Usage
-
-### Basic Usage
-
-```typescript
-import { generateDrivingLicense, PersonDetails } from './src';
-
-const details: PersonDetails = {
-  firstName: 'John',
-  surname: 'Smith',
-  dateOfBirth: new Date(1990, 4, 15), // May 15, 1990
-  gender: 'M'
-};
-
-const license = generateDrivingLicense(details);
-console.log(license); // Output: SMITH905159J99AA
-```
-
-### With Middle Name
-
-```typescript
-const details: PersonDetails = {
-  firstName: 'Sarah',
-  middleName: 'Jane',
-  surname: 'Johnson',
-  dateOfBirth: new Date(1992, 0, 20), // January 20, 1992
-  gender: 'F'
-};
-
-const license = generateDrivingLicense(details);
-console.log(license); // Output: JOHNS951202SJ9AA
-```
-
-### Using Date Helper
-
-```typescript
-import { generateDrivingLicense, parseDateString } from './src';
-
-const details = {
-  firstName: 'Bob',
-  surname: 'Lee',
-  dateOfBirth: parseDateString('1995-12-25'),
-  gender: 'M' as const
-};
-
-const license = generateDrivingLicense(details);
-console.log(license); // Output: LEE99912255B99AA
-```
-
-## Scripts
-
-```bash
-# Run tests
-npm test
-
-# Run tests in watch mode
-npm run test:watch
-
-# Run tests with coverage
-npm run test:coverage
-
-# Build TypeScript
-npm run build
-
-# Clean build artifacts
-npm run clean
-```
-
-## Running Tests
-
-```bash
-npm test
-```
-
-The test suite includes:
-- Basic functionality tests
-- Edge case handling
-- Input validation
-- Real-world examples
-- Gender-specific logic (month adjustment for females)
-- Surname padding and truncation
-- Initial handling with and without middle names
-
-## Test Coverage
-
-Run tests with coverage report:
-
-```bash
-npm run test:coverage
-```
-
-## For TDD Code Test Candidates
-
-### Your Task
-
-Implement the `generateDrivingLicense` function in `src/drivingLicense.ts` following TDD principles:
-
-1. **Start by reading and understanding the tests** in `tests/drivingLicense.test.ts`
-2. **Run the tests** to see them fail: `npm test`
-3. **Implement the function** incrementally, one test at a time
-4. **Run tests frequently** to ensure each piece works
-5. **Refactor** your code while keeping tests green
-
-### TDD Workflow
+Test Driven Development follows a simple cycle:
 
 1. **Red**: Write a test that fails
 2. **Green**: Write minimal code to make the test pass
 3. **Refactor**: Improve the code while keeping tests passing
 
-### Key Rules to Implement
+## Your Task
 
-- Surname: Take first 5 characters, uppercase, pad with 9s if shorter
-- Decade digit: `Math.floor((year % 100) / 10)`
-- Month: For females, add 50 to the month number
-- Day: Always 2 digits, zero-padded
-- Year digit: Last digit of the year
-- Initials: First and middle initials, use '9' if no middle name
-- Check digits: Use '9' and 'AA' for positions 14-16
+Implement the `generateDrivingLicense` function in `src/drivingLicense.ts` that takes personal details and generates a valid UK driving license number.
 
-### Validation Requirements
+**You will use TDD throughout this exercise!**
 
-Your implementation should:
-- Validate that required fields are present
-- Handle missing middle names
-- Convert names to uppercase
-- Remove non-letter characters from surnames
-- Throw appropriate errors for invalid inputs
+## Getting Started
 
-## Project Structure
+### 1. Install Dependencies
 
-```
-tdd-code-test/
-├── src/
-│   ├── drivingLicense.ts   # Main implementation
-│   └── index.ts            # Exports
-├── tests/
-│   └── drivingLicense.test.ts  # Unit tests
-├── package.json
-├── tsconfig.json
-├── jest.config.js
-└── README.md
+```bash
+npm install
 ```
 
-## License
+### 2. Understand the Requirements
 
-ISC
+A UK driving license number is a 16-character code structured as follows:
+
+| Position | Description                                         | Example      |
+| -------- | --------------------------------------------------- | ------------ |
+| 1-5      | First 5 letters of surname (pad with 9s if shorter) | SMITH        |
+| 6        | Decade digit of birth year                          | 9 (for 1990) |
+| 7-8      | Month of birth (add 50 for females)                 | 05 or 55     |
+| 9-10     | Day of birth                                        | 15           |
+| 11       | Last digit of birth year                            | 0 (for 1990) |
+| 12-13    | First and middle initials (use 9 if no middle)      | J9           |
+| 14       | Computer check digit                                | 9            |
+| 15-16    | Computer check digits                               | AA           |
+
+### 3. Understand the Two Test Files
+
+This exercise has TWO test files with different purposes:
+
+#### `tests/drivingLicense.test.ts` - ACCEPTANCE TESTS ✓
+
+These are **10 pre-written tests** that verify your final solution works correctly. Think of these as the "requirements" - your code must pass all of them to be complete. **You cannot modify these tests!**
+
+Run these with:
+
+```bash
+npm run check
+```
+
+#### `tests/drivingLicense.candidate.test.ts` - YOUR TDD TESTS 🧪
+
+This is YOUR test file where you practice TDD! This is where you write tests FIRST, then implement code to make them pass. Start here and build up your solution incrementally.
+
+Run YOUR tests with:
+
+```bash
+npm test
+npm run test:watch  # Watch mode (recommended!)
+```
+
+### 4. The TDD Workflow
+
+**Start in YOUR test file (`drivingLicense.candidate.test.ts`):**
+
+1. **Write a small test** for one piece of functionality
+2. **Run your tests** (`npm test`) - Watch it fail (RED ❌)
+3. **Write minimal code** in `src/drivingLicense.ts` to make it pass
+4. **Run your tests again** - Watch it pass (GREEN ✅)
+5. **Refactor** if needed (REFACTOR 🔄)
+6. **Repeat** with the next piece of functionality
+
+**Periodically check the acceptance tests:**
+
+```bash
+npm run check
+```
+
+## Commands
+
+```bash
+npm test              # Run YOUR TDD tests
+npm run test:watch    # Run YOUR tests in watch mode
+npm run check         # Run the 10 acceptance tests
+npm run build         # Build TypeScript
+```
+
+## Success Criteria
+
+Your implementation is complete when:
+
+- ✅ All 10 acceptance tests pass (`npm run check`)
+- ✅ You've written comprehensive tests in YOUR test file using TDD
+- ✅ All your TDD tests pass (`npm test`)
+- ✅ You followed strict TDD principles throughout (Red → Green → Refactor)
+- ✅ You had fun solving the problem! 😊
+
+## Good Luck!
+
+Remember the TDD mantra:
+
+1. **Red** - Write a test that fails ❌
+2. **Green** - Write minimal code to make it pass ✅
+3. **Refactor** - Clean up while keeping tests green 🔄
+
+**Have fun!** 🎉
