@@ -6,9 +6,9 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
+    "check": "jest drivingLicense.test.ts",
+    "test": "jest drivingLicense.candidate.test.ts",
+    "test:watch": "jest drivingLicense.candidate.test.ts --watch",
     "clean": "rm -rf dist coverage"
   },
   "keywords": [],

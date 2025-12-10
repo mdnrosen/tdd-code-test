@@ -1,1 +1,1 @@
-export { generateDrivingLicense, parseDateString, PersonDetails } from './drivingLicense';
+export { generateDrivingLicense, PersonDetails } from "./drivingLicense";

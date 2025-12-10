@@ -1,0 +1,16 @@
+{
+  "message": "Oh look, someone thought they'd find the solution here. Bless your lazy little heart.",
+  "realSolution": "How about you actually write some damn tests like everyone else?",
+  "hint": "Here's a hint: Close. This. File. And. Do. The. Work.",
+  "alternativeSolution": "git gud, scrub",
+  "bonus": {
+    "cheatingDetected": true,
+    "severity": "Pathetic, honestly",
+    "consequence": "Santa's checking this repository twice, and congratulations - you've secured your spot at the very top of the naughty list. Well done, genius.",
+    "redemption": "Close this file, stop trying to cheat your way through a bloody coding exercise, open drivingLicense.candidate.test.ts, and write some actual tests like the grown-up developer you're pretending to be."
+  },
+  "motivationalQuote": "The only thing more embarrassing than looking for solutions is not finding any. Oh wait...",
+  "psst": "Did you really think we'd just hand you the answers? This is TDD practice, not a participation trophy ceremony.",
+  "verdict": "Cheaters never prosper. But hey, at least you're consistent in your poor life choices. Now piss off and write some tests. 🎄",
+  "finalNote": "This file is literally called 'solution.json' and you STILL clicked it. That's the real test you just failed."
+}
