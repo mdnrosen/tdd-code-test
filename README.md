@@ -86,7 +86,7 @@ const details = {
 };
 
 const license = generateDrivingLicense(details);
-console.log(license); // Output: LEE99952595B99AA
+console.log(license); // Output: LEE99912255B99AA
 ```
 
 ## Scripts

@@ -33,7 +33,7 @@ export interface PersonDetails {
  *   dateOfBirth: new Date('1990-05-15'),
  *   gender: 'M'
  * });
- * // Returns: SMITH905159J99AA
+ * // Returns: SMITH905150J99AA
  * ```
  */
 export function generateDrivingLicense(details: PersonDetails): string {
