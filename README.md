@@ -15,7 +15,7 @@ To disable Copilot in VS Code:
 
 ## IMPORTANT: Have fun.
 
-It's Christmas. Anyone not having fun will be punished accordingly.
+Anyone not having fun will be punished according to the employee guidelines.
 
 ## What is TDD?
 
